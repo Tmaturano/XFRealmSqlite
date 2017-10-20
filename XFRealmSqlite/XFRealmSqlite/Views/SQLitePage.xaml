@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XFRealmSqlite.Views.SQLitePage" Title="SQLite">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout HorizontalOptions="Center" Padding="10">
+                <Entry Placeholder="Name" HorizontalTextAlignment="Start" Text="{Binding Name}"/>
+
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    <Label Text="Birth Date"/>
+                    <DatePicker Format="dd/MM/yyyy" Date="{Binding BirthDate}"/>
+                </StackLayout>
+
+                <Button Text="Save" Command="{Binding InsertCommand}"/>
+                <Button Text="Delete All" Command="{Binding DeleteAllCommand}"/>
+                <Button Text="Get All" Command="{Binding GetAllCommand}"/>
+
+                <ListView ItemsSource="{Binding PeopleList}"
+                          HasUnevenRows="True">
+                    <ListView.Header>
+                        <StackLayout Padding="0,16,0,14">
+                            <Label Text="- People -" TextColor="#9c9c9e" FontSize="Large" HorizontalOptions="Center" />
+                        </StackLayout>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame HasShadow="True" Margin="5">
+                                    <Label Text="{Binding NameBirthDate}"/>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>
